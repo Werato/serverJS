@@ -13,3 +13,25 @@
   margin: 10px;
   display: inline-block;
 }
+img {
+    height: 200px;
+    width:360px
+}
+@media (min-width:641px){
+  img {
+      float:left;
+      height: 200px;
+      width:360px;
+
+  }
+  div {
+    float: left;
+    width: 40%;
+    margin: 10px;
+  }
+}
+@media (max-width:640px){
+  img{
+    display: none
+  }
+}
