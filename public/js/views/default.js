@@ -1,28 +1,20 @@
-define(['jquery', 'underscore', 'backbone', 'mustache', '/js/models/page.js', 'text!/templates/page.mustache'], function ($, _, Backbone, Mustache, PageModel, pageTemplate) {
+define(['jquery', 'underscore', 'backbone', 'mustache', '/js/collection/pages.js', 'text!/templates/page.mustache'],
+ function ($, _, Backbone, Mustache, PageCollection, pagesTemplate) {
   var DefaultView = Backbone.View.extend({
     el: $('.main'),
-    data: {},
+    collection: {},
 
     initialize: function() {
-      this.data = {
-        main: {
-          title: 'main title',
-          content: 'Lorem ipsum 1'
-        },
-        about: {
-          title: 'about title',
-          content: 'Lorem ipsum 2'
-        },
-        contact: {
-          title: 'contact title',
-          content: 'Lorem ipsum 3'
-        }
-      };
+      this.collection = new PageCollection();
+      this.collection.on("sync",this.render,this);//event to sync
+      this.collection.fetch();//go to servet
     },
 
     render: function(pageType){
-      var compiledTemplate = Mustache.render( pageTemplate, this.data[pageType] );
-      this.$el.html( compiledTemplate );
+      this.data = this.collection.toJSON();
+      var complitTemp = Mustache.render(
+        pagesTemplate, this);
+        this.$el.html(complitTemp);
     }
   });
   return DefaultView;
