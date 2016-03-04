@@ -6,7 +6,7 @@ define(['jquery', 'underscore', 'backbone', 'mustache', '/js/models/page.js', 't
 
     initialize: function() {
       this.model = new PageModel();
-      this.model.on("sync",this.render,this);//event to sync
+      this.model.on("sync",this.render, this);//event to sync
       this.model.fetch();//go to servet
     },
 

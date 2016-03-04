@@ -12,13 +12,12 @@ app.use(express.static('public'));
 
 
 app.get('/', function (req, res) {
-console.log(req);
-console.log(res);
+
 });
 
 app.get('/pages/:id', function (req, res) {
   db.serialize(function() {
-    db.all('SELECT * FROM firstscript WHERE id = '+req.params.id, function(err, all) {
+    db.get('SELECT * FROM firstscript WHERE id = '+req.params.id, function(err, all) {
       res.json(all);
     });
   });
