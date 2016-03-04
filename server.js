@@ -35,5 +35,6 @@ app.get('/pages', function (req, res) {
 });
 
 app.listen(8080, function () {
+  console.log('Turn on');
 
 });

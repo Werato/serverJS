@@ -35,3 +35,7 @@ img {
     display: none
   }
 }
+h2 a {
+    color: white;
+    text-shadow: 2px 2px #919191;
+}

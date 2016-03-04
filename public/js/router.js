@@ -1,15 +1,17 @@
-define(['jquery', 'underscore', 'backbone', 'views/default'],
-function ($, _, Backbone, DefaultView) {
+define(['jquery', 'underscore', 'backbone', 'views/default','views/firstscript'],
+function ($, _, Backbone, DefaultView,PageView) {
   var SiteRouter = Backbone.Router.extend({
     routes: {
       'about': 'aboutAction',
       'contact': 'contactAction',
+      'page/:id':'pageAction',
       '*other': 'defaultAction'
     }
   });
   var initialize = function () {
     var siteRouter = new SiteRouter();
     var defaultView = new DefaultView();
+    var pageView = new PageView();//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     siteRouter.on('route:defaultAction', function(){
       defaultView.render('main');
     });
@@ -18,6 +20,10 @@ function ($, _, Backbone, DefaultView) {
     });
     siteRouter.on('route:contactAction', function(){
       defaultView.render('contact');
+    });
+    siteRouter.on('route:pageAction', function(id){
+      pageView.render(id);
+
     });
     Backbone.history.start();
   };
